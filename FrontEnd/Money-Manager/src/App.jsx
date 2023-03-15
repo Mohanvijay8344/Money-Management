@@ -10,34 +10,17 @@ import { Navigation } from "./Navigation";
 import { Dashboard } from "./Dashboard";
 import { useGlobalContext } from "./GlobalContext";
 import { Income } from "./Income";
-import { Expenses } from "./Expenses";
+import Expenses from "./Expenses";
 
 
 
 function App() {
   const [active, setActive] = React.useState(1)
-  const [count, setCount] = useState(0);
 
   const global = useGlobalContext()
-  console.log(global)
+  console.log(global);
 
-  const AppStyled = styled.div`
-    min-height: 100vh;
-    background-image: url(${(props) => props.backgrounds});
-    position: relative;
-    main {
-      flex: 1;
-      background: rgba(252, 246, 249, 0.78);
-      border: 3px solid #ffffff;
-      backdrop-filter: blur(4.5px);
-      border-radius: 32px;
-      overflow: auto;
-      overflow-x: hidden;
-      &::-webkit-scrollbar {
-      width: 0;
-      }
-    }
-  `;
+  
 
   const displayData = () => {
     switch(active){
@@ -74,5 +57,22 @@ function App() {
   )
 
 }
+
+const AppStyled = styled.div`
+    min-height: 100vh;
+    background-image: url(${(props) => props.backgrounds});
+    position: relative;
+    main {
+      flex: 1;
+      background: rgba(252, 246, 249, 0.78);
+      border: 3px solid #ffffff;
+      backdrop-filter: blur(4.5px);
+      border-radius: 32px;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+      width: 0;
+      }
+    }
+  `;
 
 export default App;

@@ -1,14 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from './GlobalContext';
+import Button from './Button';
 import { plus } from './icons';
-import Button from './Button'; 
 
-export function Form() {
-    const {addIncome,getIncomes, error, setError} = useGlobalContext()
+
+
+function ExpenseForm() {
+    const {addExpense, error, setError} = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -26,7 +27,7 @@ export function Form() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        addIncome(inputState)
+        addExpense(inputState)
         setInputState({
             title: '',
             amount: '',
@@ -36,15 +37,15 @@ export function Form() {
         })
     }
 
-    return(
-        <FormStyled onSubmit={handleSubmit}>
+    return (
+        <ExpenseFormStyled onSubmit={handleSubmit}>
             {error && <p className='error'>{error}</p>}
             <div className="input-control">
                 <input 
                     type="text" 
                     value={title}
                     name={'title'} 
-                    placeholder="Salary Title"
+                    placeholder="Expense Title"
                     onChange={handleInput('title')}
                 />
             </div>
@@ -52,7 +53,7 @@ export function Form() {
                 <input value={amount}  
                     type="text" 
                     name={'amount'} 
-                    placeholder={'Salary Amount'}
+                    placeholder={'Expense Amount'}
                     onChange={handleInput('amount')} 
                 />
             </div>
@@ -69,18 +70,15 @@ export function Form() {
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Select Option</option>
-                    <option value="salary">Salary</option>
-                    <option value="freelancing">Freelancing</option>
-                    <option value="investments">Investiments</option>
-                    <option value="stocks">Stocks</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="bank">Bank Transfer</option>  
-                    <option value="youtube">Youtube</option>  
-                    <option value="Office">Office</option>
-                    <option value="personal">Personal</option>  
+                    <option value="" disabled >Select Option</option>
+                    <option value="education">Education</option>
+                    <option value="groceries">Groceries</option>
+                    <option value="health">Health</option>
+                    <option value="subscriptions">Subscriptions</option>
+                    <option value="takeaways">Takeaways</option>
+                    <option value="clothing">Clothing</option>  
+                    <option value="travelling">Travelling</option>  
                     <option value="other">Other</option>  
-
                 </select>
             </div>
             <div className="input-control">
@@ -88,7 +86,7 @@ export function Form() {
             </div>
             <div className="submit-btn">
                 <Button 
-                    name={'Add Income'}
+                    name={'Add Expense'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
                     bRad={'30px'}
@@ -96,11 +94,12 @@ export function Form() {
                     color={'#fff'}
                 />
             </div>
-        </FormStyled>
+        </ExpenseFormStyled>
     )
 }
 
-const FormStyled = styled.form`
+
+const ExpenseFormStyled = styled.form`
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -146,5 +145,4 @@ const FormStyled = styled.form`
         }
     }
 `;
-
-export default Form;
+export default ExpenseForm

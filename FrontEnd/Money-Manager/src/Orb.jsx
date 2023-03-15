@@ -31,8 +31,6 @@ export function Orb() {
     animation: ${moveOrb} 15s alternate linear infinite;
   `;
   return (
-    <OrbStyled>
-
-    </OrbStyled>
+    <OrbStyled></OrbStyled>
   );
 }
